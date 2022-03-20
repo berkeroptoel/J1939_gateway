@@ -92,8 +92,8 @@ void twai_task(void *pvParameters)
 					}
 
 					fwrite(&mqttBuf,sizeof(MQTT_t),1,f1);
-					fclose(f1);
-					ESP_LOGI(TAG,"File closed\n");
+					//fclose(f1);
+					//ESP_LOGI(TAG,"File closed\n");
 
 //					if (xQueueSend(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY) != pdPASS) {
 //						ESP_LOGE(TAG, "xQueueSend Fail");
