@@ -22,7 +22,7 @@ CAN IDs which are filtered to send to MQTT broker is stored in a csv file called
 
 ### Testing with CANKing
 
-![CANKing](https://github.com/berkeroptoel/J1939_gate/blob/master/J1939_logger/Records/CANKing.png)
+![CANKing](https://github.com/berkeroptoel/J1939_gateway/blob/master/J1939_logger/Records/CANKing.png)
 
  
 
@@ -37,7 +37,7 @@ PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
 19*256 + 104 = 4968 
 
 
-![SPN190](https://github.com/berkeroptoel/J1939_gate/blob/master/J1939_logger/Records/RPM.png)
+![SPN190](https://github.com/berkeroptoel/J1939_gateway/blob/master/J1939_logger/Records/RPM.png)
 
 -Json deserialize  
 -Pysical value conversion should be done in MQTT client.  
@@ -47,7 +47,7 @@ PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
 1) FAST MODE: CAN frame is instantly transmitted to mqtt server.  
 2) TRIGGER MODE: CAN frame spiffs are stored in SPIFFS memory, then when the request comes, transmitted to mqtt server.   
 
-![MODES](https://github.com/berkeroptoel/J1939_gate/blob/master/J1939_logger/Records/M1.drawio.png)
+![MODES](https://github.com/berkeroptoel/J1939_gateway/blob/master/J1939_logger/Records/M1.drawio.png)
 
 ## Example folder contents
 
