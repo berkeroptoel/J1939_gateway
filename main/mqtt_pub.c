@@ -83,11 +83,7 @@ void mqtt_pub_task(void *pvParameters)
 	MQTT_t mqttBuf;
     while (1) {
 
-//    	int spc = uxQueueSpacesAvailable(xQueue_mqtt_tx);
-//    	if (spc<=90)
-//    	{
-//    			for(int k=0;k<10;k++)
-//    			{
+
     				xQueueReceive(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY);
 					if (mqttBuf.topic_type == PUBLISH) {
 
@@ -103,7 +99,15 @@ void mqtt_pub_task(void *pvParameters)
 							root = cJSON_CreateObject();
 							cJSON_AddNumberToObject(root, "PGN", mqttBuf.PGN);
 							cJSON_AddNumberToObject(root, "LENGTH", mqttBuf.data_len);
-							cJSON_AddStringToObject(root, "DATA", mqttBuf.data);
+							cJSON_AddNumberToObject(root, "B0", mqttBuf.data[0]);
+							cJSON_AddNumberToObject(root, "B1", mqttBuf.data[1]);
+							cJSON_AddNumberToObject(root, "B2", mqttBuf.data[2]);
+							cJSON_AddNumberToObject(root, "B3", mqttBuf.data[3]);
+							cJSON_AddNumberToObject(root, "B4", mqttBuf.data[4]);
+							cJSON_AddNumberToObject(root, "B5", mqttBuf.data[5]);
+							cJSON_AddNumberToObject(root, "B6", mqttBuf.data[6]);
+							cJSON_AddNumberToObject(root, "B7", mqttBuf.data[7]);
+
 							char *mqtt_json_string = cJSON_Print(root);
 
 							ESP_LOGI(TAG, "my_json_string\n%s",mqtt_json_string);
@@ -121,23 +125,6 @@ void mqtt_pub_task(void *pvParameters)
 							ESP_LOGE(TAG, "mqtt broker not connect");
 						}
     			}
-
-
-//    		}
-//
-//    	}
-    	else
-    	{
-    		//ESP_LOGI(TAG,"Queue space:%d", uxQueueSpacesAvailable(xQueue_mqtt_tx));
-    	}
-
-
-
-		for(int i=0;i<4;i++)
-		{
-			//vTaskDelay(5000 / portTICK_RATE_MS);
-		}
-
 
     } // end while
 

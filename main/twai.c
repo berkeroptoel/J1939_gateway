@@ -36,12 +36,16 @@ void twai_task(void *pvParameters)
 	MQTT_t mqttBuf;
 	mqttBuf.topic_type = PUBLISH;
 
+
+#ifdef CONFIG_MODE_TRIGGER_SEND_MQTT
+
     FILE* f1 = fopen("/spiffs/CANlogs.txt", "a");
     if (f1 == NULL) {
         ESP_LOGE(TAG, "Failed to open CANlogs file for appending");
         return;
     }
 
+#endif
 
 	while (1) {
 		//esp_err_t ret = twai_receive(&rx_msg, pdMS_TO_TICKS(1));
@@ -70,7 +74,6 @@ void twai_task(void *pvParameters)
 
 
 			for(int index=0;index<npublish;index++) {
-				//if (publish[index].frame != ext) continue;
 
 				if (publish[index].pgn == rx_msg.identifier) {
 					ESP_LOGI(TAG, "publish[%d]  pgn=0x%x topic=[%s] topic_len=%d",
@@ -91,13 +94,24 @@ void twai_task(void *pvParameters)
 						mqttBuf.data[i] = rx_msg.data[i];
 					}
 
-					fwrite(&mqttBuf,sizeof(MQTT_t),1,f1);
-					//fclose(f1);
-					//ESP_LOGI(TAG,"File closed\n");
 
-//					if (xQueueSend(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY) != pdPASS) {
-//						ESP_LOGE(TAG, "xQueueSend Fail");
-//					}
+					#ifdef CONFIG_MODE_FAST_SEND_MQTT
+
+						if (xQueueSend(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY) != pdPASS) {
+							ESP_LOGE(TAG, "xQueueSend Fail");
+						}
+
+					#endif
+
+
+					#ifdef CONFIG_MODE_TRIGGER_SEND_MQTT
+
+						fwrite(&mqttBuf,sizeof(MQTT_t),1,f1);
+						fclose(f1);
+						ESP_LOGI(TAG,"File closed\n");
+
+					#endif
+
 				}
 			}
 

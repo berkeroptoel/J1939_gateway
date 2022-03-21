@@ -150,7 +150,7 @@ esp_err_t sub_table(TOPIC_t **topics, int16_t *ntopic)
 	}
 
 	// assign values
-	(*topics+index)->pgn = 0x00000001;
+	(*topics+index)->pgn = 0x00000001; //don't care now.
 	(*topics+index)->topic = "/CAN/getlogs";
 	(*topics+index)->topic_len= 12;
 	*ntopic = 1;

@@ -15,7 +15,7 @@ typedef struct {
 	char topic[64]; //To MQTT broker
 	uint32_t PGN; // from TWAI
 	int16_t data_len; //from TWAI
-	char data[64]; //from TWAI
+	char data[8]; //from TWAI
 } MQTT_t;
 
 typedef struct {
