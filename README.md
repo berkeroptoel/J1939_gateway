@@ -44,8 +44,8 @@ PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
 
 
 ### Methods(Operating mode can be selected from menuconfig)  
-1) FAST MODE: CAN frame is instantly transmitted to mqtt server.  
-2) TRIGGER MODE: CAN frame are stored in SPIFFS memory, then when the request comes, transmitted to mqtt server.   
+1) FAST MODE: CAN frames are instantly transmitted to mqtt server.  
+2) TRIGGER MODE: CAN frames are stored in SPIFFS memory, then when the request comes, transmitted to mqtt server.   
 
 ![MODES](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/M1.drawio.png)
 
