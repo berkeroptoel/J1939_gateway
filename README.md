@@ -22,7 +22,7 @@ CAN IDs which are filtered to send to MQTT broker is stored in a csv file called
 
 ### Testing with CANKing
 
-![CANKing](https://github.com/berkeroptoel/J1939_gateway/blob/master/J1939_logger/Records/CANKing.png)
+![CANKing](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/CANKing.png)
 
  
 
