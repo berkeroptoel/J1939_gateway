@@ -35,7 +35,7 @@ PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
 0x68 = 104  
 0x13 = 19  
 19*256 + 104 = 4968 
-
+4968*0.125 = 621rpm
 
 ![SPN190](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/RPM.png)
 
