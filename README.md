@@ -34,7 +34,7 @@ Let's calculate it.
 0x68 = 104  
 0x13 = 19  
 19*256 + 104 = 4968 
-4968*0.125 = 621rpm
+4968 x 0.125 = 621rpm
 
 ![SPN190](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/RPM.png)
 
