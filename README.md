@@ -5,7 +5,8 @@ PGN61444(0x0F004) includes "engine speed" information.
 We get 29bit CAN ID from CAN BUS for every CAN Frame. (is stored 32bits variable)  
 So, we need to convert this 29bit CAN ID to 18bit PGN. 
 
-- [For reference](https://www.csselectronics.com/pages/j1939-explained-simple-intro-tutorial)
+- [For reference](https://www.csselectronics.com/pages/j1939-explained-simple-intro-tutorial)   
+- [For reference](https://www.machsystems.cz/en/news/2019/a-free-tool-for-sae-j1939-pgn-to-can-id-conversion)  
 
 | PGN | CAN ID DECIMAL | CAN ID HEX | INFORMATION
 | --- | --- | --- | --- | 
