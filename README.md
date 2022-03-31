@@ -26,9 +26,10 @@ Filtered PGNs to send MQTT broker is stored in a csv file called [J1939_PGN_tabl
 
 
 ### Decoding to SPN  
-For instance there're seven SPNs in for PGN61444. Like SPN190 for Engine speed, SPN899 for Engine torque...  
-PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
-2 bytes 6813 means 621 RPM engine speed.  
+If we look at SPNs of PGN61444, we can see it includes seven different informations. Like SPN190 for Engine speed, SPN899 for Engine torque... 
+PGN61444(217056510 in decimal) has 8 bytes payload: FF FF FF 68 13 FF FF FF
+2 bytes "68" and "13" means 621 RPM engine speed.  
+Let's calculate it. 
 
 0x68 = 104  
 0x13 = 19  
@@ -43,7 +44,7 @@ PGN61444(217056510 in decimal) has 8 byte payload: FF FF FF 68 13 FF FF FF
 
 ### Methods(Operating mode can be selected from menuconfig)  
 1) FAST MODE: CAN frames are instantly transmitted to mqtt server.  
-2) TRIGGER MODE: CAN frames are stored in SPIFFS memory, then when the request comes, transmitted to mqtt server.   
+2) TRIGGER MODE: CAN frames are stored in SPIFFS memory, as soon as the request is received, it is transmitted to the server. 
 
 ![MODES](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/M1.drawio.png)
 
