@@ -16,7 +16,7 @@ So, we need to convert this 29bit CAN ID to 18bit PGN.
 
 - [Converter](https://docs.google.com/spreadsheets/d/10f7-TFU9oViSQZYGFYVPDia2w1hd5eOPMlgJXmx31Lg/edit#gid=1130918092)
 
-CAN IDs which are filtered to send to MQTT broker is stored in a csv file called [J1939_PGN_table.csv](https://github.com/berkeroptoel/J1939_gate/blob/master/J1939_logger/Records/J1939_PGN_table.csv) 
+Filtered PGNs to send MQTT broker is stored in a csv file called [J1939_PGN_table.csv](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/J1939_PGN_table.csv) 
 
 29bitCAN ID based filtering is done in the current FW, but it can be done 18bitPGN based as well.  
 
