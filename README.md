@@ -49,7 +49,12 @@ Let's calculate it.
 ![MODES](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/M1.drawio.png)
 
 ### MENUCONFIG  
-![SETTINGS](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/menuconfig.png)
+![SETTINGS](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/menuconfig.png)  
+-New FW OTA URL  
+-MQTT Broker URL   
+-Operating mode(FAST or TRIGGER)   
+-Print LOGS(Enable or Disable)    
+
 ## Example folder contents
 
 The project **J1939_logger** contains one source file in C language [main.c](J1939_logger/main/main.c). 
