@@ -42,7 +42,7 @@ Let's calculate it.
 -Pysical value conversion should be done in MQTT client.  
 
 
-### Methods(Operating mode can be selected from menuconfig(CONFIG_MODE_FAST_SEND_MQTT or CONFIG_MODE_TRIGGER_SEND_MQTT)  
+### Methods(Operating mode can be selected from menuconfig(CONFIG_MODE_FAST_SEND_MQTT or CONFIG_MODE_TRIGGER_SEND_MQTT))  
 1) FAST MODE: Critical CAN frames are instantly transmitted to mqtt server.  
 2) TRIGGER MODE: Critical CAN frames are stored in SPIFFS memory, as soon as the request is received, they're transmitted to the server in bulk.   
 
