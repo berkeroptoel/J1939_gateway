@@ -48,6 +48,8 @@ Let's calculate it.
 
 ![MODES](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/M1.drawio.png)
 
+### MENUCONFIG  
+![SETTINGS](https://github.com/berkeroptoel/J1939_gateway/blob/master/Records/menuconfig.png)
 ## Example folder contents
 
 The project **J1939_logger** contains one source file in C language [main.c](J1939_logger/main/main.c). 
