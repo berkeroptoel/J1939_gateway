@@ -35,7 +35,7 @@ void twai_task(void *pvParameters)
 	twai_message_t rx_msg;
 	MQTT_t mqttBuf;
 	mqttBuf.topic_type = PUBLISH;
-
+	uint32_t PGNvalue ;
 
 #ifdef CONFIG_MODE_TRIGGER_SEND_MQTT
 
@@ -55,31 +55,42 @@ void twai_task(void *pvParameters)
 			int ext = rx_msg.flags & 0x01; //Standart? Extended?
 			int rtr = rx_msg.flags & 0x02; //Remote request
 
-			if (ext == 0) {
-				printf("Standard ID: 0x%03x", rx_msg.identifier);
-			} else {
-				printf("Extended ID: 0x%08x", rx_msg.identifier);
-			}
-			printf(" DLC: %d  Data: ", rx_msg.data_length_code);
+			#ifdef CONFIG_PRINT_CAN_FRAME_INFO
+			{
 
-			if (rtr == 0) {
-				for (int i = 0; i < rx_msg.data_length_code; i++) {
-					printf("0x%02x ", rx_msg.data[i]);
+				if (ext == 0) {
+					printf("Standard ID: 0x%03x", rx_msg.identifier);
+				} else {
+					printf("Extended ID: 0x%08x", rx_msg.identifier);
 				}
-			} else {
-				printf("REMOTE REQUEST FRAME");
+				printf(" DLC: %d  Data: ", rx_msg.data_length_code);
+
+				if (rtr == 0) {
+					for (int i = 0; i < rx_msg.data_length_code; i++) {
+						printf("0x%02x ", rx_msg.data[i]);
+					}
+				} else {
+					printf("REMOTE REQUEST FRAME");
+				}
+				printf("\n");
 
 			}
-			printf("\n");
+			#endif
 
+
+			PGNvalue = (rx_msg.identifier >> 8) & 0x0003FFFF;
 
 			for(int index=0;index<npublish;index++) {
 
-				if (publish[index].pgn == rx_msg.identifier) {
-					ESP_LOGI(TAG, "publish[%d]  pgn=0x%x topic=[%s] topic_len=%d",
-					index, publish[index].pgn, publish[index].topic, publish[index].topic_len);
+				if (publish[index].pgn == PGNvalue) {
 
-					mqttBuf.PGN = rx_msg.identifier;
+					#ifdef CONFIG_PRINT_CAN_FRAME_INFO
+						ESP_LOGI(TAG, "publish[%d]  pgn=0x%x topic=[%s] topic_len=%d",
+								index, publish[index].pgn, publish[index].topic, publish[index].topic_len);
+					#endif
+
+					//Fill MQTT Buffer
+					mqttBuf.PGN = PGNvalue;
 					mqttBuf.topic_len = publish[index].topic_len;
 					for(int i=0;i<mqttBuf.topic_len;i++) {
 						mqttBuf.topic[i] = publish[index].topic[i];

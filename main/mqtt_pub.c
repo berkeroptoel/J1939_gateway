@@ -83,16 +83,19 @@ void mqtt_pub_task(void *pvParameters)
 	MQTT_t mqttBuf;
     while (1) {
 
-
     				xQueueReceive(xQueue_mqtt_tx, &mqttBuf, portMAX_DELAY);
 					if (mqttBuf.topic_type == PUBLISH) {
 
+						#ifdef CONFIG_PRINT_CAN_FRAME_INFO
 						ESP_LOGI(TAG, "TOPIC=[%s]", mqttBuf.topic);
 						for(int i=0;i<mqttBuf.data_len;i++) {
 							ESP_LOGI(TAG, "DATA=%x", mqttBuf.data[i]);
 						}
+						#endif
+
+
 						EventBits_t EventBits = xEventGroupGetBits(s_mqtt_event_group);
-						ESP_LOGI(TAG, "EventBits=%x", EventBits);
+						//ESP_LOGI(TAG, "EventBits=%x", EventBits);
 						if (EventBits & MQTT_CONNECTED_BIT) {
 
 							cJSON *root;
@@ -110,11 +113,13 @@ void mqtt_pub_task(void *pvParameters)
 
 							char *mqtt_json_string = cJSON_Print(root);
 
+							#ifdef CONFIG_PRINT_CAN_FRAME_INFO
 							ESP_LOGI(TAG, "my_json_string\n%s",mqtt_json_string);
 
 							for (int i = 0; i < strlen(mqtt_json_string); ++i) {
 								printf("%c", mqtt_json_string[i]);
 							}
+							#endif
 
 							esp_mqtt_client_publish(mqtt_client,mqttBuf.topic,mqtt_json_string,strlen(mqtt_json_string),1,0);
 							cJSON_Delete(root);
@@ -122,7 +127,7 @@ void mqtt_pub_task(void *pvParameters)
 							//esp_mqtt_client_publish(mqtt_client, mqttBuf.topic, mqttBuf.data, mqttBuf.data_len, 1, 0);
 
 						} else {
-							ESP_LOGE(TAG, "mqtt broker not connect");
+							ESP_LOGE(TAG, "NOT CONNECTED TO MQTT BROKER ");
 						}
     			}
 

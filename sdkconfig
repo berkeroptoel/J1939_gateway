@@ -140,6 +140,7 @@ CONFIG_BROKER_URL="mqtt://broker.emqx.io"
 CONFIG_MODE_FAST_SEND_MQTT=y
 # CONFIG_MODE_SLOW_SEND_MQTT is not set
 # CONFIG_MODE_TRIGGER_SEND_MQTT is not set
+# CONFIG_PRINT_CAN_FRAME_INFO is not set
 # end of Example Configuration
 
 #

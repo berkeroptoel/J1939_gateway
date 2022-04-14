@@ -69,5 +69,11 @@ menu "Example Configuration"
 			help
 				CAN frames are logged to SPIFFS, as soon as get command is received from MQTT broker, then LOGS are sent to broker all together 		 	
 	endchoice
-		
+	
+	config PRINT_CAN_FRAME_INFO  
+			bool "Output the received CAN FRAME to STDOUT"
+			default y
+			help 
+				Output the received CAN FRAME to STDOUT.	
+				
 endmenu
