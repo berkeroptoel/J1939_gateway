@@ -55,6 +55,11 @@ Let's calculate it.
 -Operating mode(FAST or TRIGGER)   
 -Print LOGS(Enable or Disable)    
 
+### MQTT Certification 
+ca.crt: server certification  
+client.crt : client certification  
+client.key : client key  
+
 ## Example folder contents
 
 The project **J1939_logger** contains one source file in C language [main.c](J1939_logger/main/main.c). 
