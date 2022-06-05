@@ -89,6 +89,7 @@ void mqtt_sub_task(void *pvParameters)
 	ESP_LOGI(TAG, "Start Subscribe Broker:%s", CONFIG_BROKER_URL);
 
 	esp_mqtt_client_config_t mqtt_cfg = {
+		//.host = "192.168.1.42",
 		.uri = CONFIG_BROKER_URL,
 		.event_handle = mqtt_event_handler,
 		.client_id = "subscribe",

@@ -68,7 +68,8 @@ void mqtt_pub_task(void *pvParameters)
     ESP_LOGI(TAG, "Start Subscribe Broker:%s", CONFIG_BROKER_URL);
 
     esp_mqtt_client_config_t mqtt_cfg = {
-        .uri = CONFIG_BROKER_URL,
+        //.host = "192.168.1.42",
+    	.uri = CONFIG_BROKER_URL,
         .event_handle = mqtt_event_handler,
         .client_id = "publish",
     };
@@ -121,7 +122,8 @@ void mqtt_pub_task(void *pvParameters)
 							}
 							#endif
 
-							esp_mqtt_client_publish(mqtt_client,mqttBuf.topic,mqtt_json_string,strlen(mqtt_json_string),1,0);
+							//esp_mqtt_client_publish(mqtt_client,mqttBuf.topic,mqtt_json_string,strlen(mqtt_json_string),1,0);
+							esp_mqtt_client_publish(mqtt_client,"CAN/engine",mqtt_json_string,strlen(mqtt_json_string),1,0);
 							cJSON_Delete(root);
 
 							//esp_mqtt_client_publish(mqtt_client, mqttBuf.topic, mqttBuf.data, mqttBuf.data_len, 1, 0);

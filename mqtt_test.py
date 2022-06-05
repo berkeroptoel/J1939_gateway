@@ -11,7 +11,7 @@ host = 'broker.emqx.io'
 # MQTT Port
 port = 1883
 # MQTT Subscribe Topic
-topic = '/CAN/#'
+topic = 'CAN/#'
 
 def on_connect(client, userdata, flags, respons_code):
 	print('connect {0} status {1}'.format(host, respons_code))
